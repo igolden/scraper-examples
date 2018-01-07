@@ -1,24 +1,44 @@
-# README
+Scraper Examples
+===
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is just a small sample of building and integrating scrapers into rails. There are numerous ways to implement this functionality in every language, and in this case I'll be using Capybara due to project constraints.
 
-Things you may want to cover:
+### Goals
 
-* Ruby version
+* Scrape a remote website for events, load them into a calendar.
+* Implement an in browser solution via capybara/js
+* Implement a microservice approach that could be ran as a background job
+* Test Coverage
 
-* System dependencies
+---
 
-* Configuration
+###  Constraints
 
-* Database creation
+* This project is a code example, so UI does not matter
+* This project should take no longer that 3 hours start to finish
+* Use capybara on at least one example
+* Integrate into a traditional (not api-first) rails 5 app
 
-* Database initialization
+---
 
-* How to run the test suite
+### In Browser Request
 
-* Services (job queues, cache servers, search engines, etc.)
+The first approach is an on demand call to an external webpage via scraper. When the user hit the page we display a loader, then scrape and return the data from the remote page.
 
-* Deployment instructions
+This approach gives the "real-time" data from the remote page, but has some performance bottlenecks:
 
-* ...
+  * Request could fail, and user doesn't get results
+  * Requests the remote page too frequently, if there are many users
+  * Slower response time, because it would be faster to load and cache from our own app
+
+
+---
+
+### Microservice Request
+
+The second approach is to offload the downloading of remote data into a microservice, and parse and save that data. You can run this job occasionally to reduce load on external resources and keep your data up to date enough for non-critical information.
+
+Pros/Con: 
+  
+  * Less footprint, which is important for scrapers
+  * Will not have "real-time" data
