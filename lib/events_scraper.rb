@@ -91,8 +91,10 @@ class EventsScraper
     ##
     # Saves the events to the database
     #
-    def save_events
-      puts "TODO"
+    def save_events(events)
+      events.each do |e|
+        new_event = Event.create(e)
+      end
     end
 
     ##
@@ -102,7 +104,7 @@ class EventsScraper
       ## self.download_events
       files = prepare_files
       events = parse_events(files)
-      save_events
+      save_events(events)
     end
   end
 end

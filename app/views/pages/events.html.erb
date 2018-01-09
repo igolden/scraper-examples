@@ -1,0 +1,16 @@
+<h1>Last 20 events on Built in Colorado</h1>
+<% if @events.length == 0 %>
+  No Events Scheduled
+  <%= link_to 'Scrape now', scrape_events_path, method: :post %>
+<% else %>
+  <ul>
+      <% @events.each do |e| %>
+        <li>
+          title: <%= e.title %><br />
+          host: <%= e.host %><br />
+          On: <%= e.day %> <%= e.month %> <%= e.date %><br />
+          Host: <%= e.time %><br />
+        </li>
+      <% end %>
+  </ul>
+<% end %>
