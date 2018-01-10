@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  get '/events', controller: 'pages', action: 'events', as: 'events'
-  post '/scrape', controller: 'pages', action: 'scrape', as: 'scrape_events'
+  get '/events', controller: 'requests', action: 'events', as: 'events'
+  get '/crawled_events', controller: 'requests', action: 'crawled_events', as: 'crawled_events'
 
-  root "pages#index"
+  post '/scrape', controller: 'requests', action: 'scrape', as: 'scrape_events'
+  post '/crawl', controller: 'requests', action: 'crawl', as: 'crawl_events'
+
+  root "requests#index"
 end

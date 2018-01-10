@@ -1,11 +1,15 @@
 class Event < ActiveRecord::Base
   validates_uniqueness_of :title
   class << self
-    def scrape_all
+    ## uses lib/events_scraper.rb
+    def scrape_with_microservice
       EventsScraper.run
     end
 
-    def self.scrape_with_capybara
+    ## uses lib/events_crawler.rb
+    def scrape_with_capybara
+      crawler = EventsCrawler.new('https://builtincolorado.com/events')
+      crawler.run
     end
   end
 end

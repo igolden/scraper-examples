@@ -2,6 +2,7 @@
 <% if @events.length == 0 %>
   No Events Scheduled
   <%= link_to 'Scrape now', scrape_events_path, method: :post %>
+  <%= link_to 'Crawl', crawl_events_path, method: :post %>
 <% else %>
   <ul>
       <% @events.each do |e| %>

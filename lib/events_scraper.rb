@@ -1,7 +1,18 @@
 require 'nokogiri'
 
+##
+# EventsScraper
+#
+# Singleton class used to run the scraping 
+# microservice, built on top of wget and
+# nokogiri.
+#
+# - downloads the page HTML once, with wget
+# - parses the page with nokogiri
+# - uploads to database
+#
 class EventsScraper
-  def intialize
+  def initialize
     raise StandardError, "You can't instantiate this class"
   end
 
@@ -27,7 +38,7 @@ class EventsScraper
       ## exclude the wget-log from the dir
       ## also ignores the first two entries
       ## which are '.' and '..'
-      files = all_files[2..all_files.length].delete_if { |f| f.include?('wget-log') }
+      files = all_files[2..all_files.length].select { |f| f.include?('html') }
 
       return files
     end
