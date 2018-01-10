@@ -38,7 +38,7 @@ class EventsScraper
       ## exclude the wget-log from the dir
       ## also ignores the first two entries
       ## which are '.' and '..'
-      files = all_files[2..all_files.length].select { |f| f.include?('html') }
+      files = all_files[2..all_files.length].delete_if { |f| f.include?('wget-log') }
 
       return files
     end

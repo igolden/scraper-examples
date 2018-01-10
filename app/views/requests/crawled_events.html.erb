@@ -1,2 +1,30 @@
-  <%= link_to 'Crawl', crawl_events_path, method: :post %>
+<div class="events-wrapper">
+  <h1 class="text-center">All 9 Pages of Built in Colorado Events</h1>
+  <p class="text-center">These events are pulled by Capybara, in one request. It starts on the first page of events and crawls through all of the events pages.<br /><br />
+  <em>Note: This request could be optimized with ajax/js and loading pages as the user scrolls. This just serves as a capybara example.</em>
+  <br /><br />
+  <%= link_to 'Microservice Events', events_path, class: 'btn btn-secondary' %>
+
+  </p>
+  <% if @events.length == 0 %>
+    <p class="text-center">
+    No Events Scraped Yet. <br / ><br />
+      <%= link_to 'Crawl Events Now', crawl_events_path, method: :post, class: "btn btn-primary" %>
+    </p>
+  <% else %>
+    <div class="row">
+      <% @events.each do |e| %>
+        <div class="col-12">
+          <div class="card">
+            <h4 class="card-title"><%= e.title %></h4>
+
+            Host: <%= e.host %><br />
+            On: <%= e.day %> <%= e.month %> <%= e.date %><br />
+            Time: <%= e.time %><br />
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
 

@@ -13,21 +13,17 @@ class RequestsController < ApplicationController
   end
 
   def crawled_events
-    @events = Event.all
-  end
-
-  def additional_events
-    @events = Event.all.limit(20)
+    @events = CrawledEvent.all
   end
 
   ## call the runner through controller action
   def scrape
-    Event.scrape_all
+    Event.scrape_with_microservice
     redirect_to events_path
   end
 
   def crawl
     Event.scrape_with_capybara
-    redirect_to events_path
+    redirect_to crawled_events_path
   end
 end

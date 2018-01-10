@@ -1,17 +1,26 @@
-<h1>Last 20 events on Built in Colorado</h1>
-<% if @events.length == 0 %>
-  No Events Scheduled
-  <%= link_to 'Scrape now', scrape_events_path, method: :post %>
-  <%= link_to 'Crawl', crawl_events_path, method: :post %>
-<% else %>
-  <ul>
+<div class="events-wrapper">
+  <h1 class="text-center">Last 20 events on Built in Colorado</h1>
+  <p class="text-center">These events are scraped by a microservice. The HTML from the first page of events is downloaded, and the it's parsed by Nokogiri. <br /><br />
+  <%= link_to 'Capybara Events Scraper', crawled_events_path, class: 'btn btn-secondary' %>
+  </p>
+  <% if @events.length == 0 %>
+    <p class="text-center">
+      No Events Scraped Yet. <br />
+      <%= link_to 'Scrape Events Now', scrape_events_path, method: :post, class: "btn btn-primary" %>
+    </p>
+  <% else %>
+    <div class="row">
       <% @events.each do |e| %>
-        <li>
-          title: <%= e.title %><br />
-          host: <%= e.host %><br />
-          On: <%= e.day %> <%= e.month %> <%= e.date %><br />
-          Host: <%= e.time %><br />
-        </li>
+        <div class="col-12">
+          <div class="card">
+            <h4 class="card-title"><%= e.title %></h4>
+
+            Host: <%= e.host %><br />
+            On: <%= e.day %> <%= e.month %> <%= e.date %><br />
+            Time: <%= e.time %><br />
+          </div>
+        </div>
       <% end %>
-  </ul>
-<% end %>
+    </div>
+  <% end %>
+</div>

@@ -1,10 +1,20 @@
-Home Page
-<br />
+<div class="text-center content-wrapper">
+  <h1>Scraper Examples</h1>
+  <p>
+  This project is just a small sample of building and integrating scrapers into rails. There are numerous ways to implement this functionality in every language, and in this case I'll be using Capybara due to project constraints.
+  </p>
 
-<% if user_signed_in? %>
-  <%= link_to 'View Events', events_path %>
-  <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+  <% if user_signed_in? %>
+    <%= link_to 'View Events Scraped By Microservice', events_path, class: 'btn btn-primary' %> 
+    <br />
+    or
+    <br />
+    <%= link_to 'View Events Crawled By Capybara', events_path, class: 'btn btn-primary' %> 
+    <br />
+    <br />
+    <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-secondary' %>
   <% else %>
-    <%= link_to "Sign Up", new_user_registration_path %> or
-    <%= link_to "Sign In", new_user_session_path %>
-<% end %>
+    <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %> or
+    <%= link_to "Sign In", new_user_session_path, class: 'btn btn-secondary' %>
+  <% end %>
+</div>
