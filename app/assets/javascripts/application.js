@@ -16,3 +16,13 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require_tree .
+
+
+$( document ).ready(function() {
+  $( "#crawlButton" ).click(function() {
+    $("#crawlButton").text("Scraping now...");
+    $("#crawlButton").addClass('disableClick');
+  });
+});
+
+

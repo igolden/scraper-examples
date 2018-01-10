@@ -9,7 +9,7 @@
   <% if @events.length == 0 %>
     <p class="text-center">
     No Events Scraped Yet. <br / ><br />
-      <%= link_to 'Crawl Events Now', crawl_events_path, method: :post, class: "btn btn-primary" %>
+      <%= link_to 'Crawl Events Now', crawl_events_path, method: :post, class: "btn btn-primary", id: 'crawlButton' %>
     </p>
   <% else %>
     <div class="row">
