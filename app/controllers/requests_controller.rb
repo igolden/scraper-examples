@@ -23,7 +23,7 @@ class RequestsController < ApplicationController
   end
 
   def crawl
-    Event.scrape_with_capybara
+    CrawledEvent.scrape_with_capybara
     redirect_to crawled_events_path
   end
 end

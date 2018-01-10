@@ -5,11 +5,5 @@ class Event < ActiveRecord::Base
     def scrape_with_microservice
       EventsScraper.run
     end
-
-    ## uses lib/events_crawler.rb
-    def scrape_with_capybara
-      crawler = EventsCrawler.new('https://builtincolorado.com/events')
-      crawler.run
-    end
   end
 end
